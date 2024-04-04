@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.categorias{
+    display: flex;
+    margin: 10px;
+}
+
+.logo{
+    width:30%;
+}
