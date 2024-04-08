@@ -36,8 +36,8 @@ public class UsuarioDAO {
                 usuario.setNome(rs.getString("nome"));
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setEmail(rs.getString("email"));
-                usuario.setCpf(rs.getChar("cpf"));
-                usuario.setTelefone(rs.getChar("telefone"));
+                usuario.setCpf(rs.getInt("cpf"));
+                usuario.setTelefone(rs.getInt("telefone"));
                 listaUsuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -63,8 +63,8 @@ public class UsuarioDAO {
             stmt.setString(1, login.getNome());
             stmt.setString(2, login.getSenha());
             stmt.setString(3, login.getEmail());
-            stmt.setChar(4, login.getCpf());
-            stmt.setChar(5, login.getTelefone());
+            stmt.setInt(4, login.getCpf());
+            stmt.setInt(5, login.getTelefone());
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
@@ -109,8 +109,8 @@ public class UsuarioDAO {
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getSenha());
             stmt.setString(3, u.getEmail());
-            stmt.setChar(4, u.getCpf());
-            stmt.setChar(5, u.getTelefone());
+            stmt.setInt(4, u.getCpf());
+            stmt.setInt(5, u.getTelefone());
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Informações atualizadas com sucesso!");

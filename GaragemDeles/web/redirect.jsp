@@ -9,3 +9,5 @@ servlet but should be the only JSP outside of WEB-INF.
 <% response.sendRedirect("index.htm"); %>
 <img src="assets/logo.png" alt=""/>
 <link href="styles/index.css" rel="stylesheet" type="text/css"/>
+<a href="pages/login.jsp"></a>
+<img src="assets/FALA LOGIN DE QUALQUER LUGAR!.png" alt=""/>

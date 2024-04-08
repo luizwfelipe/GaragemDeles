@@ -14,13 +14,13 @@ public class UsuarioDTO {
     private String nome;
     private String senha;
     private String email;
-    private char cpf;
-    private char telefone;
+    private int cpf;
+    private int telefone;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(int idUsuario, String nome, String senha, String email, char cpf, char telefone) {
+    public UsuarioDTO(int idUsuario, String nome, String senha, String email, int cpf, int telefone) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.senha = senha;
@@ -61,22 +61,21 @@ public class UsuarioDTO {
         this.email = email;
     }
 
-    public char getCpf() {
+    public int getCpf() {
         return cpf;
     }
 
-    public void setCpf(char cpf) {
+    public void setCpf(int cpf) {
         this.cpf = cpf;
     }
 
-    public char getTelefone() {
+    public int getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(char telefone) {
+    public void setTelefone(int telefone) {
         this.telefone = telefone;
     }
 
-    
     
 }
