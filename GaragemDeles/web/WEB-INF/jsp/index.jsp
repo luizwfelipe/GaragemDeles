@@ -1,4 +1,6 @@
-
+//<%
+//    response.sendRedirect("pages/login.jsp"); 
+//%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//PT-BR"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,11 +15,17 @@
     </head>
     <body>
         <header>
-                <img class = "logo" src="assets/logo.png" alt=""/>
-                <a href="#">Rodas</a>
-                <a href="#">Turbo/Supercharger</a>
-                <a href="#">Kits Turbo</a>
-                <a href="#">Peças do Motor</a>
+                <div class="cima">
+
+                </div>
+                <div class="baixo">
+
+                </div>
+                  <img class = "logo" src="assets/logomono.png" alt=""/>
+                  <a href="#">Rodas</a>
+                  <a href="#">Turbo/Supercharger</a>
+                  <a href="#">Kits Turbo</a>
+                  <a href="#">Peças do Motor</a>
             
             
         </header>

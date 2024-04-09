@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    margin-right: auto;
+    margin-left:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    padding: 10px;
+}
+
+.logo{
+    width: 15%;
+}
+
+.ipt{
+    
+}
+
+label{
+    color: #ff0000;
+}
+
