@@ -13,3 +13,4 @@ servlet but should be the only JSP outside of WEB-INF.
 <img src="assets/FALA LOGIN DE QUALQUER LUGAR!.png" alt=""/>
 <a href="pages/login.jsp"></a>
 <img src="assets/logo.png" alt=""/>
+<img src="assets/pexels-mike-bird-100656.jpg" alt=""/>
