@@ -14,32 +14,13 @@
         <title>Início</title>
     </head>
     <body>
-        <header id="header">
-          <!--Auxilo com Header (front): inteliogia -->
-          <div class="container">
-            <div class="flex">
-              <a href="#"><img class = "logo" src="assets/logored.png" alt=""/></a>
-              <nav>
-                <ul> <!--intes menu abaixo-->
-                  <li><a href="#">RODAS</a></li>
-                  <li><a href="#">TURBOS</a></li>
-                  <li><a href="#">SUPERCHARGERS</a></li>
-                  <li><a href="#">PEÇAS</a></li>
-                </ul>
-              </nav>
-              <div class="cart-login">
-                <a href="" class="btnLogin"><i class="fa-solid fa-user"></i></a>
-                <a href="" class="btnCart"><i class="fa-solid fa-cart-shopping"></i></a>
-              </div>
-            </div><!--div flex-->
-          </div><!--Container aqui!!-->
-        </header>
+        
 
         <section class="fundo">
           <h1>MONTE O <span>SEU CARRO</span></h1>
         </section>
 
-        <!--<main>
+        <main>
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -61,7 +42,28 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-        </main>-->
+        </main>
+        <header id="header">
+          <!--Auxilo com Header (front): inteliogia -->
+          <div class="container">
+            <div class="flex">
+              <a href="#"><img class = "logo" src="assets/logored.png" alt=""/></a>
+              <nav>
+                <ul> <!--intes menu abaixo-->
+                  <li><a href="./categoria">RODAS</a></li>
+                  <li><a href="./categoria">TURBOS</a></li>
+                  <li><a href="./categoria">SUPERCHARGERS</a></li>
+                  <li><a href="./categoria">PEÇAS</a></li>
+                  <li><a href="./produto">Teste produtos</a></li>
+                </ul>
+              </nav>
+              <div class="cart-login">
+                <a href="./login" class="btnLogin"><i class="fa-solid fa-user"></i></a>
+                <a href="" class="btnCart"><i class="fa-solid fa-cart-shopping"></i></a>
+              </div>
+            </div><!--div flex-->
+          </div><!--Container aqui!!-->
+        </header>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
         <script src="js/index.js" type="text/javascript"></script>

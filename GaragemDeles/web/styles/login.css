@@ -1,27 +1,59 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family:'Dm Sans', Verdana, sans-serif;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ececec;
 }
 
-main{
-    margin-right: auto;
-    margin-left:auto;
+.container{
+    margin-top: 2%;
+    margin-bottom: 30%;
+    justify-content: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    justify-items: center;
-    padding: 10px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 50vw;
+    height: 50vw;
 }
 
-.logo{
-    width: 15%;
+h1{
+    font-weight: 700;
+    font-family: 'Dm Sans', Verdana, sans-serif;
 }
 
-.ipt{
-    
+a{
+    color: rgb(56, 131, 230);
 }
 
-label{
-    color: #ff0000;
+img{
+    width: 40%;
 }
 
+
+.input{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    width: 25vw;
+}
+
+.sistema p{
+    color: #c2c2c2;
+    size: 10px;
+}
+
+.sistema p a{
+    color: #888888;
+}

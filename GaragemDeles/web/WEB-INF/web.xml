@@ -12,9 +12,49 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>loginController</servlet-name>
+        <servlet-class>controller.loginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>cadastroController</servlet-name>
+        <servlet-class>controller.cadastroController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>produtoController</servlet-name>
+        <servlet-class>controller.produtoController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>categoriasController</servlet-name>
+        <servlet-class>controller.categoriasController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>homeController</servlet-name>
+        <servlet-class>controller.homeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>loginController</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cadastroController</servlet-name>
+        <url-pattern>/cadastrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>produtoController</servlet-name>
+        <url-pattern>/produto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>categoriasController</servlet-name>
+        <url-pattern>/categoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
