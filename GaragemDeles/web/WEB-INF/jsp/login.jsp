@@ -13,12 +13,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <header>
-            <a href="./home">home</a>
-        </header>
         <main>
-            <div class="container">
-            <img class = "logo" src="assets/logocinza.png" alt="menu"/>
+        <form action="logar">
+        <div class="container">
+            <img href="./home" class = "logo" src="assets/logocinza.png" alt="menu"/>
             <h1>Log in</h1>
             <div class="sistema"><p>Ao entrar você concorda com a nossa <a href="#">política de privacidade</a></p></div>
             <div class="ipt">
@@ -39,10 +37,13 @@
                     <label for="senha">Senha</label>
                     <input type="password" name="senha" placeholder="Digite sua senha..." required>
                     </div>
-                <button></button>
+                    
             </div>
+            <button type="submit" class="btn btn-login btn-block">Entrar</button>
             <p>Não possui uma conta? <a href="./cadastrar">Cadastre-se!</a></p>
         </div>
+        </form>
+            
         </main>
         
 
