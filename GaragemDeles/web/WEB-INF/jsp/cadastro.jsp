@@ -15,47 +15,53 @@
         <header>
             <a href="./home">home</a>
         </header>
-        <main>
-            <h1>Cadastro</h1>
-        <div class="ipt">
-            <div class="input">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Digite seu Nome..." required>
-                </div>
+        <form action="login">
+        <div class="container" name="frmLogin">
+            <img href="./home" class = "logo" src="assets/logocinza.png" alt="menu"/>
+            <h1>Log in</h1>
+            <div class="sistema"><p>Ao entrar você concorda com a nossa <a href="#">política de privacidade</a></p></div>
+            <div class="ipt">
+
+                <div class="input">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu Nome..." required>
+                    </div>
+            </div>
+            <div class="ipt">
+                <div class="input">
+                    <label for="senha">Senha</label>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha..." required>
+                    </div>
+                    
+            </div>
+            <div class="ipt">
+                <div class="input">
+                    <label for="email">Senha</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu email..." required>
+                    </div>
+                    
+            </div>
+            <div class="ipt">
+                <div class="input">
+                    <label for="cpf">Senha</label>
+                    <input type="number" name="cpf" id="cpf" placeholder="Digite sua cpf..." required>
+                    </div>
+                    
+            </div>
+            <div class="ipt">
+                <div class="input">
+                    <label for="telefone">Senha</label>
+                    <input type="number" name="telefone" id="telefone" placeholder="Escreva seu telefone..." required>
+                    </div>
+                    
+            </div>
+            <button type="submit" class="btn btn-cadastro btn-block">Entrar</button>
+            <p>Já possui uma conta? <a href="./login">Faça Login!</a></p>
         </div>
-        <div class="ipt">
-            <div class="input">
-                <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Digite seu email..." required>
-                </div>
-        </div>
-        <div class="ipt">
-            <div class="input">
-                <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Digite sua senha..." required>
-                </div>
-        </div>
-        <div class="ipt">
-            <div class="input">
-                <label for="csenha">Confirme a Senha</label>
-                <input type="password" name="csenha" placeholder="Digite sua senha..." required>
-                </div>
-        </div>
-        <div class="ipt">
-            <div class="input">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Digite sua senha..." required>
-                </div>
-        </div>
-        <div class="ipt">
-            <div class="input">
-                <label for="nome">Nome</label>
-                <input type="text" name="nome" placeholder="Digite sua senha..." required>
-                </div>
-        </div>
+        </form>
 
         
-        <p>Já possui uma conta? <a href="./login">Faça Login!</a></p>
+        
         </main>
         
     </body>

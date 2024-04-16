@@ -12,12 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.UsuarioDTO;
+import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Senai
  */
-public class cadastroController extends HttpServlet {
+public class CadastroController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +50,7 @@ public class cadastroController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
@@ -62,8 +64,38 @@ public class cadastroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String url = request.getServletPath();
+        if (url.equals("/cadastrar")) {
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            UsuarioDTO user = new UsuarioDTO();
+            UsuarioDAO dao = new UsuarioDAO();
+
+            user.setNome(request.getParameter("nome"));
+            user.setSenha(request.getParameter("senha"));
+            user.setEmail(request.getParameter("email"));
+            user.setCpf(Integer.parseInt(request.getParameter("cpf")));
+            user.setTelefone(Integer.parseInt(request.getParameter("telefone")));
+
+            try {
+                if (dao.existe(user.getEmail())) {
+                    nextPage = "/WEB-INF/jsp/cadastro.jsp";
+                    request.setAttribute("errorMessage", "email já está em uso");
+                } else {
+                    dao.create(user);
+                    request.setAttribute("successMessage", "cadastro realizado com sucesso");
+                }
+            } catch (Exception e) {
+                nextPage = "/WEB-INF/jsp/cadastro.jsp";
+                request.setAttribute("errorMessage", "erro ao cadastrar usuário: " + e.getMessage());
+            }
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        } else {
+            processRequest(request, response);
+        }
     }
+
 
     /**
      * Returns a short description of the servlet.

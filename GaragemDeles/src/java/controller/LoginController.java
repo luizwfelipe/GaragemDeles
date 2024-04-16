@@ -12,12 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.UsuarioDTO;
+import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Senai
  */
-public class loginController extends HttpServlet {
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,7 +51,44 @@ public class loginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        // public Usuario validaUser(Usuario user) {
+        //Usuario usuarioValido = new Usuario();
+        
+            //public UsuarioDTO login(UsuarioDTO user) {
+        //UsuarioDTO loginUser = new UsuarioDTO();
+        
+        
+         String url = request.getServletPath();
+        if (url.equals("/login")) {
+            String nextPage = "/WEB-INF/jsp/index.jsp";
+            UsuarioDTO user = new UsuarioDTO();
+            UsuarioDAO valida = new UsuarioDAO();
+
+            user.setNome(request.getParameter("nome"));
+            user.setSenha(request.getParameter("senha"));
+
+            try {
+                UsuarioDTO userAutenticado = valida.login(user);
+
+                if (userAutenticado != null && !userAutenticado.getNome().isEmpty()) {
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                    dispatcher.forward(request, response);
+                } else {
+                    nextPage = "/WEB-INF/jsp/login.jsp";
+                    request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                    dispatcher.forward(request, response);
+                }
+            } catch (Exception e) {
+                nextPage = "/WEB-INF/jsp/login.jsp";
+                request.setAttribute("errorMessage", "Usuário ou senha inválidos");
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                dispatcher.forward(request, response);
+            }
+        } else {
+            processRequest(request, response);
+        }
     }
 
     /**

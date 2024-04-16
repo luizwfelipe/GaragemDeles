@@ -74,30 +74,36 @@ public class UsuarioDAO {
         }
 
     }
-    public Boolean login(String login, String senha) {
-        Boolean validar = false;
+    public UsuarioDTO login(UsuarioDTO user) {
+        UsuarioDTO loginUser = new UsuarioDTO();
         try {
-            Connection conexao = Conexao.conectar();
+            Connection con = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
-
-            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE login = ? AND senha = ?");
-            stmt.setString(1, login);
-            stmt.setString(2, senha);
+            
+            stmt = con.prepareStatement("SELECT * FROM usuario WHERE nome = ? AND senha = ?");
+            stmt.setString(1, user.getNome());
+            stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                validar = true;
+            
+            if(rs.next()) {
+                loginUser.setIdUsuario(rs.getInt("idUsuario"));
+                loginUser.setNome(rs.getString("nome"));
+                loginUser.setSenha(rs.getString("senha"));
             }
-
+            
             rs.close();
             stmt.close();
-            conexao.close();
+            con.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            loginUser.setIdUsuario(0);
+            loginUser.setNome("");
+            loginUser.setSenha("");
         }
-        return validar;
+        return loginUser;
     }
+
     
     public void update(UsuarioDTO u) {
         try {
@@ -128,11 +134,39 @@ public class UsuarioDAO {
         PreparedStatement stmt = conexao.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");
         stmt.setInt(1, idProduto);
         stmt.executeUpdate();
-        stmt.close();
-        conexao.close();
+        
         JOptionPane.showMessageDialog(null, "Sua conta foi deletada");
     } catch (SQLException e) {
         e.printStackTrace();
     }
     }
+    
+    public boolean existe(String email) throws SQLException {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    ResultSet rs = null;
+    boolean existe = false;
+   
+    try {
+        conn = Conexao.conectar();
+        stmt = conn.prepareStatement("SELECT COUNT (*) FROM usuario WHERE email = ?");
+        stmt.setString(1, email);
+        rs = stmt.executeQuery();
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            existe = count > 0;
+        }
+    } finally {
+        if (rs != null && stmt != null && conn != null) {
+            rs.close();
+            stmt.close();
+            conn.close();
+        }
+    }
+   
+    return existe;
 }
+
+    
+}
+

@@ -14,8 +14,8 @@
     </head>
     <body>
         <main>
-        <form action="logar">
-        <div class="container">
+        <form action="login">
+        <div class="container" name="frmLogin">
             <img href="./home" class = "logo" src="assets/logocinza.png" alt="menu"/>
             <h1>Log in</h1>
             <div class="sistema"><p>Ao entrar você concorda com a nossa <a href="#">política de privacidade</a></p></div>
@@ -23,19 +23,13 @@
 
                 <div class="input">
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" placeholder="Digite seu Nome..." required>
-                    </div>
-            </div>
-            <div class="ipt">
-                <div class="input">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="Digite seu email..." required>
+                    <input type="text" name="nome" id="nome" placeholder="Digite seu Nome..." required>
                     </div>
             </div>
             <div class="ipt">
                 <div class="input">
                     <label for="senha">Senha</label>
-                    <input type="password" name="senha" placeholder="Digite sua senha..." required>
+                    <input type="password" name="senha" id="senha" placeholder="Digite sua senha..." required>
                     </div>
                     
             </div>
