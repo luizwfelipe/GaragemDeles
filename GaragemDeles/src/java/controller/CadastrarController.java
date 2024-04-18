@@ -51,36 +51,7 @@ public class CadastrarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = request.getServletPath();
-        if (url.endsWith("/cadastrar-usuario")) {
-            String nextPage = "/WEB-INF/jsp/index.jsp";
-            UsuarioDTO user = new UsuarioDTO();
-            UsuarioDAO dao = new UsuarioDAO();
-
-            user.setNome(request.getParameter("nome"));
-            user.setSenha(request.getParameter("senha"));
-            user.setEmail(request.getParameter("email"));
-            user.setCpf(request.getParameter("cpf"));
-            user.setTelefone(request.getParameter("telefone"));
-
-            try {
-                if (dao.existe(user.getEmail())) {
-                    nextPage = "/WEB-INF/jsp/cadastrar.jsp";
-                    request.setAttribute("errorMessage", "Email já está em uso");
-                } else {
-                    dao.create(user);
-                    request.setAttribute("successMessage", "Cadastro realizado com sucesso");
-                }
-            } catch (Exception e) {
-                nextPage = "/WEB-INF/jsp/cadastrar.jsp";
-                request.setAttribute("errorMessage", "Erro ao cadastrar usuário: " + e.getMessage());
-            }
-
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } else {
-            processRequest(request, response);
-        }
+        processRequest(request, response);
     }
 
     @Override
@@ -92,35 +63,39 @@ public class CadastrarController extends HttpServlet {
         String email = request.getParameter("email");
         String cpf = request.getParameter("cpf");
         String telefone = request.getParameter("telefone");
-        if (nome != null && senha != null && email != null && cpf != null && telefone != null) {
-            if (!nome.trim().equals("") && !senha.trim().equals("") && !email.trim().equals("") && !cpf.trim().equals("") && !telefone.trim().equals("")) {
+                UsuarioDAO dao = new UsuarioDAO();
                 UsuarioDTO usuario = new UsuarioDTO();
                 usuario.setNome(nome);
                 usuario.setSenha(senha);
                 usuario.setEmail(email);
                 usuario.setCpf(cpf);
                 usuario.setTelefone(telefone);
-                UsuarioDAO dao = new UsuarioDAO();
+                
+                
                 try {
                     if (dao.existe(usuario.getEmail())) {
-                        request.setAttribute("errorMessage", "Email já está em uso");
+                        request.setAttribute("errorMessage","email já está em uso");
+                        System.out.println("email já está em uso");
+                        String nextPage ="/WEB-INF/jsp/cadastrar.jsp";
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                        dispatcher.forward(request, response);
                     } else {
                         dao.create(usuario);
-                        request.setAttribute("successMessage", "Cadastro realizado com sucesso");
+                        String nextPage ="/WEB-INF/jsp/index.jsp";
+                        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                        dispatcher.forward(request, response);
+                        request.setAttribute("successMessage", "cadastro realizado com sucesso");
                     }
                 } catch (Exception e) {
-                    request.setAttribute("errorMessage", "Erro ao cadastrar usuário: " + e.getMessage());
+                    request.setAttribute("errorMessage", "erro ao cadastrar usuário: " + e.getMessage());
+                    System.out.println("erro ao cadastrar usuário: " + e.getMessage());
+                    String nextPage ="/WEB-INF/jsp/cadastrar.jsp";
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                    dispatcher.forward(request, response);
                 }
-            } else {
-                request.setAttribute("errorMessage", "Todos os campos são obrigatórios");
-            }
-        } else {
-            request.setAttribute("errorMessage", "Parâmetros inválidos");
-        }
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp/index.jsp");
-        dispatcher.forward(request, response);
+}
+
     
-    }
 
 
 

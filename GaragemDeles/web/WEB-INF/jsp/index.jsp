@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.bean.ProdutoDTO"%>
 <%@page import="java.util.List"%>
 <!--
@@ -47,25 +48,7 @@
               <h2>Destaques do mês: </h2>
               <p>*ainda nao esta funcionado*</p>
               <!--CARD-->
-              <% 
-                List<ProdutoDTO> produtos = (List<ProdutoDTO>) request.getAttribute("produtos");
-                for (ProdutoDTO produto : produtos) {
-            %>
-            <div class="card dark">
-                <img src="assets/logocinza.png" class="card-img-top" alt="">
-                <div class="card-body">
-                    <div class="text-section">
-                        <h5 class="card-title fw-bold"><%= produto.getNome() %></h5>
-                        <p class="card-text"><%= produto.getDescricao() %></p>
-                        <p><%= produto.getIdProduto() %></p>
-                    </div>
-                    <div class="cta-section">
-                        <div><%= produto.getPreco() %></div>
-                        <a href="#" class="btn btn-light">Buy Now</a>
-                    </div>
-                </div>
-            </div>
-            <% } %>
+            
 
         </main>
         <header id="header">
@@ -74,12 +57,14 @@
             <div class="flex">
               <a href="#"><img class = "logo" src="assets/logored.png" alt=""/></a>
               <nav>
-                <ul> <!--intes menu abaixo-->
-                  <li><a href="./categoria">RODAS</a></li>
-                  <li><a href="./categoria">TURBOS</a></li>
-                  <li><a href="./categoria">SUPERCHARGERS</a></li>
-                  <li><a href="./categoria">PEÇAS</a></li>
-                  <li><a href="./produto">Teste produtos</a></li>
+                <ul>
+                    
+                    <!--Puxar do banco-->
+                    <c:forEach items="categoria" var="categorias">
+                        <li><a href="./categoria">${categorias.nome}</a></li>
+                    </c:forEach>
+                    
+                  
                 </ul>
               </nav>
               <div class="cart-login">

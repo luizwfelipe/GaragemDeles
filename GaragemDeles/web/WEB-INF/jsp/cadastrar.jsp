@@ -30,11 +30,11 @@
                     </div>
                     <div class="input">
                         <label for="cpf">cpf</label>
-                        <input type="number" name="cpf" id="cpf" placeholder="Digite seu cpf..." required>
+                        <input type="text" name="cpf" id="cpf" placeholder="Digite seu cpf..." required>
                     </div>
                     <div class="input">
                         <label for="telefone">nome</label>
-                        <input type="number" name="telefone" id="telefone" placeholder="Digite seu telefone..." required>
+                        <input type="text" name="telefone" id="telefone" placeholder="Digite seu telefone..." required>
                     </div>
                     <button type="submit" class="btn btn-cadastro btn-block">Cadastre-se</button>
 

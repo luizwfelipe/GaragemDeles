@@ -67,18 +67,18 @@ public class UsuarioDAO {
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
-        } catch (SQLException e) {
+        } catch (SQLException e) {  
             e.printStackTrace();
         }
     }
     public UsuarioDTO login(UsuarioDTO user) {
         UsuarioDTO loginUser = new UsuarioDTO();
         try {
-            Connection con = Conexao.conectar();
+            Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = con.prepareStatement("SELECT * FROM usuario WHERE nome = ? AND senha = ?");
+            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE nome = ? AND senha = ?");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
@@ -91,7 +91,7 @@ public class UsuarioDAO {
             
             rs.close();
             stmt.close();
-            con.close();
+            conexao.close();
         } catch (SQLException e) {
             e.printStackTrace();
             loginUser.setIdUsuario(0);
@@ -116,7 +116,7 @@ public class UsuarioDAO {
             stmt.setString(5, u.getTelefone());
             
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Informações atualizadas com sucesso!");
+            JOptionPane.showMessageDialog(null, "informações atualizadas com sucesso!");
 
             stmt.close();
             conexao.close();
@@ -139,26 +139,25 @@ public class UsuarioDAO {
     }
     
     public boolean existe(String email) throws SQLException {
-    Connection conn = null;
+    Connection conexao = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
     boolean existe = false;
    
     try {
-        conn = Conexao.conectar();
-        stmt = conn.prepareStatement("SELECT COUNT (*) FROM usuario WHERE email = ?");
+        conexao = Conexao.conectar();
+        stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ?");
         stmt.setString(1, email);
         rs = stmt.executeQuery();
         if (rs.next()) {
             int count = rs.getInt(1);
-            existe = count > 0;
+            existe = true;
         }
-    } finally {
-        if (rs != null && stmt != null && conn != null) {
-            rs.close();
-            stmt.close();
-            conn.close();
-        }
+        rs.close();
+        stmt.close();
+        conexao.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
    
     return existe;

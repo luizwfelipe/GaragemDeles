@@ -34,7 +34,7 @@
                     
             </div>
             <button type="submit" class="btn btn-login btn-block">Entrar</button>
-            <p>Não possui uma conta? <a href="./cadastrar">Cadastre-se!</a></p>
+            <p>Não possui uma conta? <a href="./cadastrar-usuario">Cadastre-se!</a></p>
         </div>
         </form>
             
