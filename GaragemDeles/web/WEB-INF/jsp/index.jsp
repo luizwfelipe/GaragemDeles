@@ -1,3 +1,5 @@
+<%@page import="model.bean.ProdutoDTO"%>
+<%@page import="java.util.List"%>
 <!--
 //    response.sendRedirect("pages/login.jsp"); 
 -->
@@ -42,6 +44,29 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
+              <h2>Destaques do mês: </h2>
+              <p>*ainda nao esta funcionado*</p>
+              <!--CARD-->
+              <% 
+                List<ProdutoDTO> produtos = (List<ProdutoDTO>) request.getAttribute("produtos");
+                for (ProdutoDTO produto : produtos) {
+            %>
+            <div class="card dark">
+                <img src="assets/logocinza.png" class="card-img-top" alt="">
+                <div class="card-body">
+                    <div class="text-section">
+                        <h5 class="card-title fw-bold"><%= produto.getNome() %></h5>
+                        <p class="card-text"><%= produto.getDescricao() %></p>
+                        <p><%= produto.getIdProduto() %></p>
+                    </div>
+                    <div class="cta-section">
+                        <div><%= produto.getPreco() %></div>
+                        <a href="#" class="btn btn-light">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
         </main>
         <header id="header">
           <!--Auxilo com Header (front): inteliogia -->

@@ -20,7 +20,7 @@ import model.bean.UsuarioDTO;
  * @author Senai
  */
 public class UsuarioDAO {
-    public List<UsuarioDTO> readProdutos() {
+     public List<UsuarioDTO> readUsuarios() {
         List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement stmt = null;
@@ -28,7 +28,7 @@ public class UsuarioDAO {
 
         try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT idUsuario, nome, senha, email, cpf, telefone FROM produto");
+            stmt = conexao.prepareStatement("SELECT idUsuario, nome, senha, email, cpf, telefone FROM usuario");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 UsuarioDTO usuario = new UsuarioDTO();
@@ -36,8 +36,8 @@ public class UsuarioDAO {
                 usuario.setNome(rs.getString("nome"));
                 usuario.setSenha(rs.getString("senha"));
                 usuario.setEmail(rs.getString("email"));
-                usuario.setCpf(rs.getInt("cpf"));
-                usuario.setTelefone(rs.getInt("telefone"));
+                usuario.setCpf(rs.getString("cpf"));
+                usuario.setTelefone(rs.getString("telefone"));
                 listaUsuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -54,25 +54,22 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
     
-    public void create(UsuarioDTO login) {
-
+    public void create(UsuarioDTO usuario) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone) VALUES (?, ?, ? ,?)");
-            stmt.setString(1, login.getNome());
-            stmt.setString(2, login.getSenha());
-            stmt.setString(3, login.getEmail());
-            stmt.setInt(4, login.getCpf());
-            stmt.setInt(5, login.getTelefone());
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone) VALUES (?, ?, ? ,? ,?)");
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getSenha());
+            stmt.setString(3, usuario.getEmail());
+            stmt.setString(4, usuario.getCpf());
+            stmt.setString(5, usuario.getTelefone());
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
-            JOptionPane.showMessageDialog(null, "Cadastro feito com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
     public UsuarioDTO login(UsuarioDTO user) {
         UsuarioDTO loginUser = new UsuarioDTO();
@@ -115,8 +112,8 @@ public class UsuarioDAO {
             stmt.setString(1, u.getNome());
             stmt.setString(2, u.getSenha());
             stmt.setString(3, u.getEmail());
-            stmt.setInt(4, u.getCpf());
-            stmt.setInt(5, u.getTelefone());
+            stmt.setString(4, u.getCpf());
+            stmt.setString(5, u.getTelefone());
             
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Informações atualizadas com sucesso!");
@@ -166,7 +163,5 @@ public class UsuarioDAO {
    
     return existe;
 }
-
-    
 }
 

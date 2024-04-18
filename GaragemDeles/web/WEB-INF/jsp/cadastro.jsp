@@ -15,13 +15,12 @@
         <header>
             <a href="./home">home</a>
         </header>
-        <form action="login">
-        <div class="container" name="frmLogin">
+        <main>
+        <form action="cadastrar">
+        <div class="container" name="frmCadastro">
             <img href="./home" class = "logo" src="assets/logocinza.png" alt="menu"/>
             <h1>Log in</h1>
-            <div class="sistema"><p>Ao entrar você concorda com a nossa <a href="#">política de privacidade</a></p></div>
             <div class="ipt">
-
                 <div class="input">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" placeholder="Digite seu Nome..." required>
@@ -36,33 +35,32 @@
             </div>
             <div class="ipt">
                 <div class="input">
-                    <label for="email">Senha</label>
+                    <label for="email">Email</label>
                     <input type="email" name="email" id="email" placeholder="Digite seu email..." required>
                     </div>
                     
             </div>
             <div class="ipt">
                 <div class="input">
-                    <label for="cpf">Senha</label>
+                    <label for="cpf">Cpf</label>
                     <input type="number" name="cpf" id="cpf" placeholder="Digite sua cpf..." required>
                     </div>
                     
             </div>
             <div class="ipt">
                 <div class="input">
-                    <label for="telefone">Senha</label>
+                    <label for="telefone">Telefone</label>
                     <input type="number" name="telefone" id="telefone" placeholder="Escreva seu telefone..." required>
                     </div>
                     
             </div>
-            <button type="submit" class="btn btn-cadastro btn-block">Entrar</button>
+            <button type="submit" class="btn btn-cadastro btn-block">Cadastrar</button>
             <p>Já possui uma conta? <a href="./login">Faça Login!</a></p>
         </div>
         </form>
 
         
         
-        </main>
-        
+        </main>  
     </body>
 </html>
