@@ -1,0 +1,56 @@
+drop database eles;
+CREATE DATABASE eles;
+USE eles;
+
+CREATE TABLE usuario(
+idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100),
+senha VARCHAR(45),
+email VARCHAR(100),
+cpf CHAR(14),
+telefone CHAR(14),
+logado boolean
+);
+
+CREATE TABLE categorias(
+    idCategorias INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(40)
+);
+CREATE TABLE produto(
+    idProduto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(45),
+    categoria VARCHAR(40),
+    descricao TINYTEXT,
+    preco FLOAT,
+    estoque INT,
+    fkIdCategorias INT,
+    FOREIGN KEY (fkIdCategorias) REFERENCES categorias(idCategorias)
+);
+
+DELIMITER $
+CREATE TRIGGER insere_categoria_produto BEFORE INSERT ON produto
+FOR EACH ROW
+BEGIN
+    DECLARE categoria_id INT;
+    SELECT idCategorias INTO categoria_id FROM categorias WHERE nome = NEW.categoria;
+    IF categoria_id IS NULL THEN
+        INSERT INTO categorias (nome) VALUES (NEW.categoria);
+        SET categoria_id = LAST_INSERT_ID();
+    END IF;
+    SET NEW.fkIdCategorias = categoria_id;
+END;
+$
+DELIMITER ;
+
+
+
+INSERT INTO usuario (nome,senha,email,cpf,telefone) VALUES
+('admin','admin','adm','1','1');
+
+INSERT INTO produto (nome, categoria, descricao, preco, estoque) 
+VALUES ('Jogo de Rodas Off-Road 18"', 'Rodas', 'Conjunto de quatro rodas off-road de 18 polegadas', 799.99, 8),
+('Jogo de Rodas Off-Road 18"', 'Rodas', 'Conjunto de quatro rodas off-road de 18 polegadas', 799.99, 8),
+('Volante', 'Acessórios', 'Volante tipo msc', 592.99, 10);
+
+
+SELECT * FROM usuario;
