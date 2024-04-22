@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import model.bean.UsuarioDTO;
 import model.dao.UsuarioDAO;
 
@@ -74,7 +75,9 @@ public class CadastrarController extends HttpServlet {
                 
                 
                 try {
-                    if (dao.existe(usuario.getEmail())) {
+                    if (usuario.getNome().trim().equals("") || usuario.getSenha().trim().equals("") ||usuario.getEmail().trim().equals("") || usuario.getCpf().trim().equals("") || usuario.getTelefone().trim().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Algo está incorreto!");
+                    }else if(dao.existe(usuario.getEmail())) {
                         request.setAttribute("errorMessage","email já está em uso");
                         System.out.println("email já está em uso");
                         nextPage ="/WEB-INF/jsp/cadastrar.jsp";

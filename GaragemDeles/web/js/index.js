@@ -103,13 +103,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //LOGICA DE CATEGORIA FEITO COM AUXILIO DE CODING ARTIST
 function filterProduct(category) {
-    let elements = document.querySelectorAll(".card");
-    elements.forEach(element => {
-        let categoriaProduto = element.querySelector(".categoria-card").innerText.toLowerCase();
+    let produtosLoja = document.querySelector(".produtosLoja");
+    let elementos = produtosLoja.querySelectorAll(".card");
+
+    elementos.forEach(elemento => {
+        let categoriaProduto = elemento.querySelector(".categoria-card").innerText.toLowerCase();
         if (category === "todas" || categoriaProduto === category.toLowerCase()) {
-            element.style.visibility = "visible"; 
+            elemento.style.display = "block"; 
+            produtosLoja.prepend(elemento); 
         } else {
-            element.style.visibility = "hidden";
+            elemento.style.display = "none";
         }
     });
 }

@@ -72,7 +72,7 @@
                               <p class="card-text">${produtos.descricao}</p>
                               <p class="categoria-card">${produtos.categoria}</p>
                               <p class="card-id">Código de produto: ${produtos.idProduto}</p>
-                              
+                              <p class="card-estoque">Estoque: ${produtos.estoque}</p>
                           </div>
                       </div>
                       <div class="cta-section">
@@ -102,10 +102,9 @@
             <div class="flex">
               <a href="#"><img class = "logo" src="assets/logored.png" alt=""/></a>
               <nav>
-                
-              
-                
+                  
               </nav>
+              <div>Status: Não logado</div>
               <div class="cart-login">
                 <a href="./login" class="btnLogin"><i class="fa-solid fa-user"></i></a>
                 <!-- LÓGICA CARRINHO: LEARNING AXIS-->
