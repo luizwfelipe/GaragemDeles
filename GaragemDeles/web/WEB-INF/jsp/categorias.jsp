@@ -9,13 +9,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="styles/categorias.css" rel="stylesheet" type="text/css"/>
+        <script src="https://kit.fontawesome.com/72aebe393c.js" crossorigin="anonymous"></script>
         <title>Categorias</title>
     </head>
     
     <body>
         <header>
-            <a href="./home">home</a>
+            <h1>Your Shopping Cart</h1>
+            <div class="Shopping">
+                <img src="" alt="">
+            </div>
         </header>
-        <h1>Categorias Categóricas</h1>
+        <h1>RODAS</h1>
+        <main>
+            
+            </c:forEach>
+            
+        </main>
+        
+        <script src="categorias.js"></script>
     </body>
 </html>

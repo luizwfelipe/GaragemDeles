@@ -22,8 +22,8 @@
             <div class="ipt">
 
                 <div class="input">
-                    <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome" placeholder="Digite seu Nome..." required>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Digite seu email..." required>
                     </div>
             </div>
             <div class="ipt">

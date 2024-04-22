@@ -22,14 +22,14 @@ public class ProdutoDAO {
             stmt = conexao.prepareStatement("SELECT idProduto, nome, categoria, descricao, preco, estoque FROM produto");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                ProdutoDTO produto = new ProdutoDTO();
-                produto.setIdProduto(rs.getInt("idProduto"));
-                produto.setNome(rs.getString("nome"));
-                produto.setCategoria(rs.getString("categoria"));
-                produto.setDescricao(rs.getString("descricao"));
-                produto.setPreco(rs.getFloat("preco"));
-                produto.setEstoque(rs.getInt("estoque"));
-                listaProduto.add(produto);
+                ProdutoDTO produtos = new ProdutoDTO();
+                produtos.setIdProduto(rs.getInt("idProduto"));
+                produtos.setNome(rs.getString("nome"));
+                produtos.setCategoria(rs.getString("categoria"));
+                produtos.setDescricao(rs.getString("descricao"));
+                produtos.setPreco(rs.getFloat("preco"));
+                produtos.setEstoque(rs.getInt("estoque"));
+                listaProduto.add(produtos);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

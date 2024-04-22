@@ -58,6 +58,7 @@ public class CadastrarController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("doPost acionado");
+        String nextPage = "/WEB-INF/jsp/index.jsp";
         String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
         String email = request.getParameter("email");
@@ -76,12 +77,12 @@ public class CadastrarController extends HttpServlet {
                     if (dao.existe(usuario.getEmail())) {
                         request.setAttribute("errorMessage","email já está em uso");
                         System.out.println("email já está em uso");
-                        String nextPage ="/WEB-INF/jsp/cadastrar.jsp";
+                        nextPage ="/WEB-INF/jsp/cadastrar.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                         dispatcher.forward(request, response);
                     } else {
                         dao.create(usuario);
-                        String nextPage ="/WEB-INF/jsp/index.jsp";
+                        nextPage ="/WEB-INF/jsp/login.jsp";
                         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                         dispatcher.forward(request, response);
                         request.setAttribute("successMessage", "cadastro realizado com sucesso");
@@ -89,7 +90,7 @@ public class CadastrarController extends HttpServlet {
                 } catch (Exception e) {
                     request.setAttribute("errorMessage", "erro ao cadastrar usuário: " + e.getMessage());
                     System.out.println("erro ao cadastrar usuário: " + e.getMessage());
-                    String nextPage ="/WEB-INF/jsp/cadastrar.jsp";
+                    nextPage ="/WEB-INF/jsp/cadastrar.jsp";
                     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                     dispatcher.forward(request, response);
                 }

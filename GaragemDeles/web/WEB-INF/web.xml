@@ -40,6 +40,10 @@
         <servlet-name>CadastrarController</servlet-name>
         <servlet-class>controller.CadastrarController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adicionarProdutosController</servlet-name>
+        <servlet-class>controller.adicionarProdutosController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.htm</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>CadastrarController</servlet-name>
         <url-pattern>/cadastrar-usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adicionarProdutosController</servlet-name>
+        <url-pattern>/add-produtos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

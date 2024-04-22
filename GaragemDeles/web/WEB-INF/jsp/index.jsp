@@ -45,31 +45,71 @@
                   <span class="visually-hidden">Next</span>
                 </button>
               </div>
-              <h2>Destaques do mês: </h2>
-              <p>*ainda nao esta funcionado*</p>
-              <!--CARD-->
-            
+              
+     
 
+              <!--FRONT FEITO COM AJUDA DE BOOTSTRAP-->
+              <!-- LÓGICA CARRINHO: LEARNING AXIS-->
         </main>
+        <!-- Lógica de categorias feita com ajuda de "Coding Artist"-->
+        
+        <div id="categorias">
+          <button class="btnCategoria"  onclick="filterProduct('todas')">Todas</button>
+            <c:forEach items="${categorias}" var="categoria">
+                 <button class="btnCategoria"  onclick="filterProduct('${categoria.nome}')">${categoria.nome}</button>
+            </c:forEach>
+        </div>
+        <section class="produtos-carrinho">
+          <div class="produtosLoja">
+              <c:forEach items="${produto}" var="produtos">
+                  <div class="card produt">
+                      <div class="image-section">
+                          <img src="assets/logomono.png" class="card-img-top" alt="...">
+                      </div>
+                      <div class="content-section">
+                          <div class="text-section">
+                              <h5 class="card-title fw-bold">${produtos.nome}</h5>
+                              <p class="card-text">${produtos.descricao}</p>
+                              <p class="categoria-card">${produtos.categoria}</p>
+                              <p class="card-id">Código de produto: ${produtos.idProduto}</p>
+                              
+                          </div>
+                      </div>
+                      <div class="cta-section">
+                          <div>R$${produtos.preco}</div>
+                          <a href="#" class="btn btn-light"><i class="fa-solid fa-cart-shopping"></i>Adicionar</a>
+                      </div>
+                  </div>
+              </c:forEach>
+          </div>
+          <div class="sidebar">
+              <div class="head">Meu carrinho
+              <button id="btnCompra">Comprar</button></div>
+              <div class="cartItem">Carrinho vazio</div>
+              
+              <div class="foot">
+                  <h3>Total</h3>
+                  <h2 class="total">$ 0.00</h2>
+              </div>
+              
+          </div>
+      </section>
+
+        <!-- HEADER ABAIXO -->
         <header id="header">
           <!--Auxilo com Header (front): inteliogia -->
           <div class="container">
             <div class="flex">
               <a href="#"><img class = "logo" src="assets/logored.png" alt=""/></a>
               <nav>
-                <ul>
-                    
-                    <!--Puxar do banco-->
-                    <c:forEach items="categoria" var="categorias">
-                        <li><a href="./categoria">${categorias.nome}</a></li>
-                    </c:forEach>
-                    
-                  
-                </ul>
+                
+              
+                
               </nav>
               <div class="cart-login">
                 <a href="./login" class="btnLogin"><i class="fa-solid fa-user"></i></a>
-                <a href="" class="btnCart"><i class="fa-solid fa-cart-shopping"></i></a>
+                <!-- LÓGICA CARRINHO: LEARNING AXIS-->
+                <a href="" class="btnCart"><i class="fa-solid fa-cart-shopping"></i><p id="contador">0</p></a>
               </div>
             </div><!--div flex-->
           </div><!--Container aqui!!-->

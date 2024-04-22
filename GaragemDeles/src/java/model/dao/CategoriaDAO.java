@@ -28,11 +28,11 @@ public class CategoriaDAO {
 
         try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT idCategoria, nome FROM categoria");
+            stmt = conexao.prepareStatement("SELECT idCategorias, nome FROM categorias");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 CategoriaDTO categoria = new CategoriaDTO();
-                categoria.setIdCategoria(rs.getInt("idCategoria"));
+                categoria.setIdCategorias(rs.getInt("idCategorias"));
                 categoria.setNome(rs.getString("nome"));
                 lista.add(categoria);
             }

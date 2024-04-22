@@ -7,11 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.ProdutoDTO;
+import model.dao.ProdutoDAO;
 
 /**
  *
@@ -30,8 +33,12 @@ public class CategoriasController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nextPage = "/WEB-INF/jsp/categorias.jsp";
         
+        ProdutoDAO produtoDao = new ProdutoDAO();
+        List<ProdutoDTO> produtos = produtoDao.readProdutos();
+        request.setAttribute("produto", produtos);
+        
+        String nextPage = "/WEB-INF/jsp/categorias.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
         dispatcher.forward(request, response);
     }

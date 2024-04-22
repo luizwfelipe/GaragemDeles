@@ -10,23 +10,23 @@ package model.bean;
  * @author Senai
  */
 public class CategoriaDTO {
-    private int idCategoria;
+    private int idCategorias;
     private String nome;
 
     public CategoriaDTO() {
     }
 
-    public CategoriaDTO(int idCategoria, String nome) {
-        this.idCategoria = idCategoria;
+    public CategoriaDTO(int idCategorias, String nome) {
+        this.idCategorias = idCategorias;
         this.nome = nome;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getIdCategorias() {
+        return idCategorias;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setIdCategorias(int idCategorias) {
+        this.idCategorias = idCategorias;
     }
 
     public String getNome() {
@@ -36,6 +36,8 @@ public class CategoriaDTO {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+   
 
     
 }
