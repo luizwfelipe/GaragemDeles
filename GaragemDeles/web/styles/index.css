@@ -351,3 +351,7 @@ align-items: center;
 .hidden {
     display: none;
 }
+
+.card.show {
+    display: block;
+}

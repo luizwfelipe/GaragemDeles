@@ -1,8 +1,7 @@
-
-
 var cart = [];
 
 document.addEventListener("DOMContentLoaded", function() {
+    
     //sistema de header invisível auxiliado por: inteliogia
     window.addEventListener("scroll", function() {
         var header = document.querySelector('#header');
@@ -25,44 +24,32 @@ document.addEventListener("DOMContentLoaded", function() {
             logoImg.src = novaImg;
         }
     }
-
-//fim da tentativa fracassadakkkkkkkkkk
-    
-/* AUXILIO COM BACK DO CARRINHO: LEARNING AXIS*/
-
-    window.delElement = function(index) {
-            cart.splice(index, 1);
-       displayCart();
-        calculateTotal();
-        updateCartCounter();
-    }
-
-        var addToCartButtons = document.querySelectorAll('.cta-section .btn');
-        addToCartButtons.forEach(function(button) {
-            button.addEventListener('click', function(event) {
-              event.preventDefault();
-                var card = button.closest('.card');
-                var product = {
-                   image: card.querySelector('.card-img-top').src,
-                    nome: card.querySelector('.card-title').textContent,
-                    preco: card.querySelector('.cta-section div').textContent.replace('R$', '').trim()
-                };
-                addToCart(product);
-            });
+    /*LÓGICA CARRINHO: LEARNING AXIS*/
+    function addToCart(product) {
+        var existingProduct = cart.find(function(item) {
+            return item.nome === product.nome;
         });
-    });
 
-   function addToCart(product) {
-        cart.push(product);
+        if (existingProduct) {
+            var availableQuantity = product.estoque - existingProduct.quantidade;
+            if (availableQuantity > 0) {
+                var quantityToAdd = Math.min(product.quantidade, availableQuantity);
+                existingProduct.quantidade += quantityToAdd;
+            }
+        } else {
+            cart.push(product);
+        }
+        product.estoque -= product.quantidade;
+
         updateCartCounter();
         displayCart();
         calculateTotal();
     }
 
+
     function updateCartCounter() {
         document.getElementById('contador').textContent = cart.length;
     }
-
     function displayCart() {
         var cartItemElement = document.querySelector('.cartItem');
         if (cart.length === 0) {
@@ -72,55 +59,83 @@ document.addEventListener("DOMContentLoaded", function() {
                 return `
                     <div class='cart-item'>
                         <div class='row-img'>
-                           <img class='rowimg' src='${item.image}'>
+                            <img class='rowimg' src='${item.image}'>
                         </div>
                         <p style='font-size: 12px;'>${item.nome}</p>
-                        <h2 style='font-size: 15px;'>R$${item.preco}</h2>
-                        <i class='fa-solid fa-trash' onclick='delElement(${index})'></i>
+                        <p style='font-size: 12px;'>Quantidade: ${item.quantidade}</p>
+                        <h2 style='font-size: 15px;'>R$${(item.preco * item.quantidade).toFixed(2)}</h2>
+                        <i class='fa-solid fa-trash' onclick='removeFromCart(${index})'></i>
                     </div>
                 `;
             }).join('');
         }
     }
-
     function calculateTotal() {
         var total = cart.reduce(function(acc, curr) {
-            return acc + parseFloat(curr.preco);
+            return acc + (curr.preco * curr.quantidade);
         }, 0);
-        document.querySelector('.total').textContent = '$' + total.toFixed(2);
+        document.querySelector('.total').textContent = 'R$ ' + total.toFixed(2);
     }
-
-    function limparCarrinho() {
-        cart = [];
-       displayCart();
+    window.removeFromCart = function(index) {
+        var product = cart[index];
+        product.estoque += product.quantidade;
+        cart.splice(index, 1);
+        displayCart();
         calculateTotal();
+        updateCartCounter();}
+    var addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+    addToCartButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            var card = button.closest('.card');
+            var product = {
+                image: card.querySelector('.card-img-top').src,
+                nome: card.querySelector('.card-title').textContent,
+                preco: parseFloat(card.querySelector('.cta-section div').textContent.replace('R$', '').trim()),
+                quantidade: parseInt(card.querySelector('.quantity').value),
+                estoque: parseInt(card.querySelector('.quantity').max)
+            };
+            addToCart(product);
+        });
+    });
+    document.getElementById('btnCompra').addEventListener('click', function() {
+        cart.forEach(function(product) {
+            product.estoque += product.quantidade;
+        });
+        cart = [];
         updateCartCounter();
+        displayCart();
+        calculateTotal();
+        location.reload();
+    });
+    
+    /*LÓGICA CATEGORIA: CODING ARTIST*/
+    
+    function filterProduct(category) {
+        var produtosLoja = document.querySelector(".produtosLoja");
+        var elementos = produtosLoja.querySelectorAll(".card");
+        elementos.forEach(function(elemento) {
+            var categoriaProduto = elemento.querySelector(".categoria-card").innerText.toLowerCase();
+            if (category === "todas" || categoriaProduto === category.toLowerCase()) {
+                elemento.style.display = "block";
+            } else {
+                elemento.style.display = "none";
+            }
+        });
+        var categoriaButtons = document.querySelectorAll(".btnCategoria");
+        categoriaButtons.forEach(function(button) {
+            if (button.innerText.toLowerCase() === category) {
+                button.classList.add('selected');
+            } else {
+                button.classList.remove('selected');
+            }
+        });
     }
-
-     document.getElementById('btnCompra').      addEventListener('click', function() {
-        limparCarrinho();
-    });
-
-//LOGICA DE CATEGORIA FEITO COM AUXILIO DE CODING ARTIST
-function filterProduct(category) {
-    let produtosLoja = document.querySelector(".produtosLoja");
-    let elementos = produtosLoja.querySelectorAll(".card");
-
-    elementos.forEach(elemento => {
-        let categoriaProduto = elemento.querySelector(".categoria-card").innerText.toLowerCase();
-        if (category === "todas" || categoriaProduto === category.toLowerCase()) {
-            elemento.style.display = "block"; 
-            produtosLoja.prepend(elemento); 
-        } else {
-            elemento.style.display = "none";
-        }
-    });
-}
-
-
-document.querySelectorAll(".btnCategoria").forEach(button => {
-    button.addEventListener('click', function() {
-        let category = button.innerText.toLowerCase();
-        filterProduct(category);
+    var categoriaButtons = document.querySelectorAll(".btnCategoria");
+    categoriaButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var category = button.innerText.toLowerCase();
+            filterProduct(category);
+        });
     });
 });
